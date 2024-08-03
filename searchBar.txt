@@ -1,0 +1,49 @@
+"use client";
+
+import { useSearchParams ,usePathname, useRouter} from 'next/navigation'
+import { SearchIcon } from "lucide-react";
+
+export default function SearchBar() {
+
+    const searchParams = useSearchParams();
+    const pathName = usePathname();
+
+    const { replace } = useRouter();
+
+  function handleSearch(term: string){
+
+    console.log(`searching...${term}`)
+
+    const param = new URLSearchParams(searchParams)
+
+    if(term){
+        param.set('query',term);
+
+    }else{
+
+        param.delete('query');
+
+    }
+
+    replace(`${pathName}?${param.toString()}`);
+
+  }
+
+
+
+  return (
+    <nav className="mx-1 flex justify-end gap-2 py-2 md:mx-4 md:gap-4">
+      <div className="flex items-center rounded-lg border-2 border-slate-300 px-2 md:w-[65%] lg:max-2xl:w-[55%] xl:w-[67%]">
+        <SearchIcon />
+        <input
+          placeholder="Search here"
+          className="w-full border-none focus-visible:ring-0 focus-visible:ring-offset-0"
+          onChange={(e) => {
+            handleSearch(e.target.value)
+          }}
+          defaultValue={searchParams.get('query')?.toString()}
+        />
+      </div>
+    </nav>
+  );
+}

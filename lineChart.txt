@@ -1,0 +1,129 @@
+"use client"
+
+import { TrendingUp } from "lucide-react"
+import { CartesianGrid, Line, LineChart, XAxis, YAxis , ReferenceLine } from "recharts"
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart"
+
+const chartData = [
+  { month: "1", Current: 10, Previous: 9 },
+  { month: "2", Current: 5, Previous: 8 },
+  { month: "3", Current: 15, Previous: 12 },
+  { month: "4", Current: 10, Previous: 5 },
+  { month: "5", Current: 12, Previous: 14 },
+  { month: "6", Current: 15, Previous: 14 },
+  { month: "7", Current: 10, Previous: 14 },
+];
+
+const chartConfig = {
+  Current: {
+    label: "Current",
+    color: "green",
+  },
+  Previous: {
+    label: "Previous",
+    color: "red",
+  },
+} satisfies ChartConfig
+
+export default function Component() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Line Chart - Current vs Previous</CardTitle>
+        <CardDescription>January - July 2024</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <ChartContainer config={chartConfig}>
+          <LineChart
+            accessibilityLayer
+            data={chartData}
+            margin={{
+              left: 12,
+              right: 12,
+              top:12,
+            }}
+          >
+            <XAxis
+              dataKey="month"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              tickFormatter={(value) => value.slice(0, 3)}
+            />
+            <YAxis
+             tickLine={false}
+             axisLine={false}
+             tickMargin={8}
+              domain={[0, 15]}
+              ticks={[0, 5, 10, 15]}
+              tickFormatter={(value) => value.toString()}
+            />
+            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+
+              {/* Add ReferenceLines for specific Y-values */}
+              <ReferenceLine y={0} stroke="gray" />
+              <ReferenceLine y={5} stroke="gray" />
+              <ReferenceLine y={10} stroke="gray"  />
+              <ReferenceLine y={11} stroke="gray"  />
+              <ReferenceLine y={12} stroke="gray"  />
+              <ReferenceLine y={13} stroke="gray"  />
+              <ReferenceLine y={14} stroke="gray"  />
+              <ReferenceLine y={15} stroke="gray"  />
+
+
+               {/* Add ReferenceLines with custom colors on the x-axis */}
+               <ReferenceLine x="1" stroke="#ff5733" />
+            <ReferenceLine x="2" stroke="#ff5733" />
+            <ReferenceLine x="2.5" stroke="#ff5733" />
+            <ReferenceLine x="3" stroke="#33ff57" />
+            <ReferenceLine x="4" stroke="#33ff57" />
+            <ReferenceLine x="5" stroke="#33ff57" />
+            <ReferenceLine x="6" stroke="#3357ff" />
+            <ReferenceLine x="7" stroke="#3357ff" />
+            
+            <Line
+              dataKey="Current"
+              type="linear"
+              stroke="blue"
+              strokeWidth={1}
+              dot={{ fill: "blue", r: 3 }} // Filled dots for the Current line
+            />
+            <Line
+              dataKey="Previous"
+              type="linear"
+              stroke="red"
+              strokeWidth={1}
+              dot={{ fill: "red", r: 3 }} // Filled dots for the Previous line
+            />
+          </LineChart>
+        </ChartContainer>
+      </CardContent>
+      <CardFooter>
+        <div className="flex w-full items-start gap-2 text-sm">
+          <div className="grid gap-2">
+            <div className="flex items-center gap-2 font-medium leading-none">
+              Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+            </div>
+            <div className="flex items-center gap-2 leading-none text-muted-foreground">
+              Showing total visitors for the last 6 months
+            </div>
+          </div>
+        </div>
+      </CardFooter>
+    </Card>
+  )
+}
