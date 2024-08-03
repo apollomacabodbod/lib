@@ -1,0 +1,55 @@
+"use client";
+import { useState } from 'react';
+
+export default function DisplayComponent(){
+
+
+    const [showPaymentOptions, setShowPaymentOptions] = useState(true);
+
+    const togglePaymentOptions = () => {
+        setShowPaymentOptions(!showPaymentOptions);
+    };
+
+
+
+    return(
+    
+    <>
+
+
+<div className='border border-[#50B498]'>
+
+<button onClick={togglePaymentOptions}>click me</button>
+
+
+     <div
+        className={`${
+          showPaymentOptions ? 'max-h-screen' : 'max-h-0 opacity-0'
+        } overflow-hidden transition-all duration-1000 ease-in-out `}
+      >
+
+
+        <p className='border border-[#50B498]'>Hello World</p>
+        <p className='border border-[#50B498]'>Hello World</p>
+        <p className='border border-[#50B498]'>Hello World</p>
+        <p className='border border-[#50B498]'>Hello World</p>
+        <p className='border border-[#50B498]'>Hello World</p>
+        <p className='border border-[#50B498]'>Hello World</p>
+        <p className='border border-[#50B498]'>Hello World</p>
+        <p className='border border-[#50B498]'>Hello World</p>
+        <p className='border border-[#50B498]'>Hello World</p>
+        <p className='border border-[#50B498]'>Hello World</p>
+        <p className='border border-[#50B498]'>Hello World</p>
+        <p className='border border-[#50B498]'>Hello World</p>
+
+
+    </div>
+
+</div>
+
+    
+    
+    </>
+
+)
+}
