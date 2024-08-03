@@ -1,0 +1,95 @@
+
+"use client"
+
+import React, { useState } from 'react';
+import Image from "next/image";
+import Link from 'next/link';
+
+
+
+export default function HeroSection() {
+  // State to manage sidebar visibility
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  // Function to toggle sidebar
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+
+  return (
+    <>
+      <div className="flex flex-col min-h-screen bg-center bg-cover bg-no-repeat bg-fixed bg-[url('/HeroBackground.svg')]  md:px-[4em] px-[1em]">
+        {/* Header Component */}
+        <div className="flex items-center justify-between  w-full mt-[0.6875em]">
+          <Image
+            src={`HeroLogo.svg`}
+            width={0}
+            height={0}
+            alt="Hero logo"
+            className="w-full bg-cover bg-center bg-no-repeat bg-fixed max-w-[11.25em] cursor-pointer"
+          />
+
+          <div className="lg:flex hidden items-center gap-[2em] ">
+            <Link href={"#"} className="text-white text-[1.25rem] font-bold border-b-2 focus:border-[#1AA845] hover:border-[#1AA845] border-transparent transition-all duration-500 ease-in-out">Main</Link>
+            <Link href={"#"} className="text-white text-[1.25rem] font-bold border-b-2 focus:border-[#1AA845] hover:border-[#1AA845] border-transparent transition-all duration-500 ease-in-out">About</Link>
+            <Link href={"#"} className="text-white text-[1.25rem] font-bold border-b-2 focus:border-[#1AA845] hover:border-[#1AA845] border-transparent transition-all duration-500 ease-in-out">Features</Link>
+            <Link href={"#"} className="text-white text-[1.25rem] font-bold border-b-2 focus:border-[#1AA845] hover:border-[#1AA845] border-transparent transition-all duration-500 ease-in-out">Testimonials</Link>
+            <button className="w-full text-[1rem] text-white font-normal py-[0.5em] px-[1.25em] bg-[#1AA845] rounded-[0.625em] whitespace-nowrap active:scale-95 transition-transform duration-200">Browse Shopping Cards</button>
+          </div>
+
+          {/* Hamburger Menu Icon */}
+          <Image
+            src={'hamburger.svg'}
+            width={0}
+            height={0}
+            alt="menu icon"
+            onClick={toggleSidebar} // Toggle sidebar on click
+            className="lg:hidden w-full bg-cover bg-center bg-no-repeat bg-fixed max-w-[2.5em] cursor-pointer"
+          />
+        </div>
+
+        {/* Sidebar for Mobile (Right Side) */}
+        <div
+          className={`fixed top-0 right-0 h-full w-[75%] max-w-[18em] bg-center bg-cover bg-no-repeat bg-fixed bg-[url('/HeroBackground.svg')] z-50 transform ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-500 ease-in-out`}
+        >
+          <div className="flex flex-col items-start p-4">
+
+          <Image
+            src={'close.svg'}
+            width={0}
+            height={0}
+            alt="menu icon"
+            onClick={toggleSidebar} // Toggle sidebar on click
+            className="lg:hidden w-full bg-cover bg-center bg-no-repeat bg-fixed max-w-[2em] cursor-pointer self-end"
+          />
+
+            
+            <Link href={"#"} className="text-white text-[1.25rem] font-bold mt-4 border-b-2 focus:border-[#1AA845] hover:border-[#1AA845] border-transparent transition-all duration-500 ease-in-out">Main</Link>
+            <Link href={"#"} className="text-white text-[1.25rem] font-bold mt-4 border-b-2 focus:border-[#1AA845] hover:border-[#1AA845] border-transparent transition-all duration-500 ease-in-out">About</Link>
+            <Link href={"#"} className="text-white text-[1.25rem] font-bold mt-4 border-b-2 focus:border-[#1AA845] hover:border-[#1AA845] border-transparent transition-all duration-500 ease-in-out">Features</Link>
+            <Link href={"#"} className="text-white text-[1.25rem] font-bold mt-4 border-b-2 focus:border-[#1AA845] hover:border-[#1AA845] border-transparent transition-all duration-500 ease-in-out">Testimonials</Link>
+            <button className="mt-4 w-full text-[1rem] text-white font-normal py-[0.5em] px-[1.25em] bg-[#1AA845] rounded-[0.625em] whitespace-nowrap active:scale-95 transition-transform duration-200"
+            >
+              
+              Browse Shopping Cards
+            </button>
+          </div>
+        </div>
+
+
+
+        {/* Overlay for Sidebar */}
+        {isSidebarOpen && (
+          <div
+            className="fixed inset-0 bg-black opacity-50 z-40"
+            onClick={toggleSidebar}
+          ></div>
+        )}
+
+     
+      </div>
+    </>
+  );
+}
+
