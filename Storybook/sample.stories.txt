@@ -32,3 +32,19 @@ export const SubsessionForm: Story = {
 
   },
 };
+
+
+// Hero Section Component
+
+<HeroSection
+  handleClickLearnMore={() => {}}
+  handleClickOpenAccount={() => {}}
+  labels={{
+    buttonTextPrimary: 'Open an account now',
+    buttonTextSecondary: 'Learn More',
+    description: 'Tapup is the cutting-edge digital business card that transforms the way professionals connect, ensuring that every interaction is both meaningful and effortless.',
+    title: 'Improving Professional Connections for a More Promising Future',
+    videoAlt: 'Nfc',
+    videoSrc: 'hpZ9dGADcVg'
+  }}
+/>
