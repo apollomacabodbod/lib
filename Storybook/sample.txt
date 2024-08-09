@@ -1,64 +1,232 @@
 
 "use client"
 
+import React, { useState } from 'react';
+import Image from "next/image";
+import Link from 'next/link';
+
+
 
 type HeroSectionProps = {
-
-  labels?: {
-    title?: string
-    description?: string
-    buttonTextPrimary?: string
-    buttonTextSecondary?: string
-    videoSrc?: string
-    videoAlt?: string
-}
-
-handleClickOpenAccount: () => void
-handleClickLearnMore: () => void
-
-}
+  title?: string;
+  description?: string;
+  buttonTextPrimary?: string;
+  buttonTextSecondary?: string;
+  videoSrc?: string;
+  videoAlt?: string;
+  
+};
 
 
-export default function HeroSection({ labels ,handleClickOpenAccount, handleClickLearnMore}: HeroSectionProps) {
+export default function HeroSection({ title,description, buttonTextPrimary,buttonTextSecondary
+  ,videoSrc,videoAlt
+}: HeroSectionProps) {
+  // State to manage sidebar visibility
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  // Function to toggle sidebar
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const handleClickOpenAccount = () => {
+    console.log("Redirection to Open Account page..")
+  };
+
+
+  const handleClickLearnMore = () => {
+    console.log("Redirection to Learn More page..")
+  };
+
+
 
 
   return (
     <>
-     
+      <div className="flex flex-col min-h-screen bg-center bg-cover bg-no-repeat bg-fixed bg-[url('/HeroBackground.svg')]  md:px-[4em] px-[1em]">
+        {/* Header Component */}
+        <div className="flex items-center justify-between  w-full mt-[0.6875em]">
+          <Image
+            src={`HeroLogo.svg`}
+            width={0}
+            height={0}
+            alt="Hero logo"
+            className="w-full bg-cover bg-center bg-no-repeat bg-fixed max-w-[11.25em] cursor-pointer"
+          />
 
-     <div className="md:flex md:items-center md:justify-center gap-[1em] mt-[2.5em] ">
+          <div className="lg:flex hidden items-center gap-[2em] ">
+            <Link href={"#"} className="text-white text-[1.25rem] font-bold border-b-2 focus:border-[#1AA845] hover:border-[#1AA845] border-transparent transition-all duration-500 ease-in-out">Main</Link>
+            <Link href={"#"} className="text-white text-[1.25rem] font-bold border-b-2 focus:border-[#1AA845] hover:border-[#1AA845] border-transparent transition-all duration-500 ease-in-out">About</Link>
+            <Link href={"#"} className="text-white text-[1.25rem] font-bold border-b-2 focus:border-[#1AA845] hover:border-[#1AA845] border-transparent transition-all duration-500 ease-in-out">Features</Link>
+            <Link href={"#"} className="text-white text-[1.25rem] font-bold border-b-2 focus:border-[#1AA845] hover:border-[#1AA845] border-transparent transition-all duration-500 ease-in-out">Testimonials</Link>
+            <button className="w-full text-[1rem] text-white font-normal py-[0.5em] px-[1.25em] bg-[#1AA845] rounded-[0.625em] whitespace-nowrap active:scale-95 transition-transform duration-200">Browse Shopping Cards</button>
+          </div>
 
-     <div className='flex items-center justify-center'>
+          {/* Hamburger Menu Icon */}
+          <Image
+            src={'hamburger.svg'}
+            width={0}
+            height={0}
+            alt="menu icon"
+            onClick={toggleSidebar} // Toggle sidebar on click
+            className="lg:hidden w-full bg-cover bg-center bg-no-repeat bg-fixed max-w-[2.5em] cursor-pointer"
+          />
+        </div>
 
-<button className="text-white text-[1rem] font-normal py-[0.75em] px-[1.5em] bg-[#1AA845] rounded-[0.625em] whitespace-nowrap transform active:scale-95 transition-transform duration-200 hover:cursor-pointer"
- onClick={handleClickOpenAccount}
+        {/* Sidebar for Mobile (Right Side) */}
+        <div
+          className={`fixed top-0 right-0 h-full w-[75%] max-w-[18em] bg-center bg-cover bg-no-repeat bg-fixed bg-[url('/HeroBackground.svg')] z-50 transform ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-500 ease-in-out`}
+        >
+          <div className="flex flex-col items-start p-4">
+
+          <Image
+            src={'close.svg'}
+            width={0}
+            height={0}
+            alt="menu icon"
+            onClick={toggleSidebar} // Toggle sidebar on click
+            className="lg:hidden w-full bg-cover bg-center bg-no-repeat bg-fixed max-w-[2em] cursor-pointer self-end"
+          />
+
+            
+            <Link href={"#"} className="text-white text-[1.25rem] font-bold mt-4 border-b-2 focus:border-[#1AA845] hover:border-[#1AA845] border-transparent transition-all duration-500 ease-in-out">Main</Link>
+            <Link href={"#"} className="text-white text-[1.25rem] font-bold mt-4 border-b-2 focus:border-[#1AA845] hover:border-[#1AA845] border-transparent transition-all duration-500 ease-in-out">About</Link>
+            <Link href={"#"} className="text-white text-[1.25rem] font-bold mt-4 border-b-2 focus:border-[#1AA845] hover:border-[#1AA845] border-transparent transition-all duration-500 ease-in-out">Features</Link>
+            <Link href={"#"} className="text-white text-[1.25rem] font-bold mt-4 border-b-2 focus:border-[#1AA845] hover:border-[#1AA845] border-transparent transition-all duration-500 ease-in-out">Testimonials</Link>
+            <button className="mt-4 w-full text-[1rem] text-white font-normal py-[0.5em] px-[1.25em] bg-[#1AA845] rounded-[0.625em] whitespace-nowrap active:scale-95 transition-transform duration-200"
+            >
+              Browse Shopping Cards
+            </button>
+          </div>
+        </div>
+
+
+        
+
+        {/* Overlay for Sidebar */}
+        {isSidebarOpen && (
+          <div
+            className="fixed inset-0 bg-black opacity-50 z-40"
+            onClick={toggleSidebar}
+          ></div>
+        )}
+
+
+
+
+        {/* Hero Section */}
+        <div className="flex flex-col  w-full md:mt-[5.125em] mt-[2.5625em]">
+          <p className="text-white text-[3.5rem] font-bold text-center leading-[1.2em]">
+            {/* Improving Professional Connections for a More Promising Future */}
+
+            {title ?? "Improving Professional Connections for a More Promising Future1"}
+          </p>
+
+          <p className="text-white text-[1.125rem] font-normal text-center  lg:px-[16.625em] mt-[1.1875em] leading-[1.2em]">
+            {/* Tapup is the cutting-edge digital business card that transforms the way professionals connect, ensuring that every interaction is both meaningful and effortless. */}
+         
+            {description ?? "Tapup is the cutting-edge digital business card that transforms the way professionals connect, ensuring that every interaction is both meaningful and effortless."}
+         
+          </p>
+
+          <div className="flex items-center relative  lg:mx-[5em] md:mx-[0em] sm:mx-[5em]">
+            <Image
+              src={'/arrow.svg'}
+              width={0}
+              height={0}
+              alt="Arrow icon"
+              className="absolute top-[0] right-0 min-w-[3.1875em] md:min-w-[6.375em]"
+            />
+          </div>
+
+          <div className="md:flex md:items-center md:justify-center gap-[1em] mt-[2.5em] ">
+
+
+            <div className='flex items-center justify-center'>
+
+            <button className="text-white text-[1rem] font-normal py-[0.75em] px-[1.5em] bg-[#1AA845] rounded-[0.625em] whitespace-nowrap transform active:scale-95 transition-transform duration-200 hover:cursor-pointer"
+             onClick={handleClickOpenAccount}
+            >
+              
+              {/* Open an account now */}
+              {buttonTextPrimary ?? "Open an account now"}
+            
+            
+            </button>
+
+
+            </div>
+
+
+            <div className='flex items-center justify-center mt-[1em] md:mt-[0]'>
+
+            <button className="text-white text-[1rem] font-normal py-[0.75em] px-[1.5em]  rounded-[0.625em] whitespace-nowrap transform active:scale-95 transition-transform duration-200 hover:cursor-pointer border border-[#1AA845]"
+             onClick={handleClickLearnMore}
+            >
+              
+              {/* Learn More */}
+              {buttonTextSecondary ?? "Learn More"}
+              
+              </button>
+
+            </div>
+          
+            
+          </div>
+
+
+
+          <div className="responsive-iframe-container w-full max-w-[19.5em] md:ml-[11.5625em]  md:mt-[9.125em] mt-[4.5625em] md:mb-[4.3125em] mb-[2.15625em]">
+
+<iframe
+  src={`https://www.youtube.com/embed/${videoSrc ?? "X5Ynyy5ZLho"}`}
+  className='rounded-[1em]'
 >
   
-  {/* Open an account now */}
-  {labels?.buttonTextPrimary ?? "Open an account now"}
+  {videoAlt ?? "Alt-text for IFrame"}
+</iframe>
 
 
-</button>
+  </div>
 
 
-</div>
 
+        </div>
 
-<div className='flex items-center justify-center mt-[1em] md:mt-[0] '>
-
-<button className="text-black text-[1rem] font-normal py-[0.75em] px-[1.5em]  rounded-[0.625em] whitespace-nowrap transform active:scale-95 transition-transform duration-200 hover:cursor-pointer border border-[#1AA845]"
- onClick={handleClickLearnMore}
->
-  
-  {/* Learn More */}
-  {labels?.buttonTextSecondary ?? "Learn More"}
-  
-  </button>
-
-</div>
-
-
-</div>
+        {/* Footer Icons */}
+        <div className="flex flex-col md:mt-[4.3125em] mt-[2.15625em] md:mb-[3.5625em] mb-[1.78125em] ">
+          <div className="flex items-center gap-[1.0625em]">
+            <Image
+              src={'linkedin.svg'}
+              width={0}
+              height={0}
+              alt="LinkedIn icon"
+              className="w-full bg-cover bg-center bg-no-repeat bg-fixed max-w-[1.125em]"
+            />
+            <Image
+              src={'twitter.svg'}
+              width={0}
+              height={0}
+              alt="Twitter icon"
+              className="w-full bg-cover bg-center bg-no-repeat bg-fixed max-w-[1.125em]"
+            />
+            <Image
+              src={'dribble.svg'}
+              width={0}
+              height={0}
+              alt="Dribble icon"
+              className="w-full bg-cover bg-center bg-no-repeat bg-fixed max-w-[1.125em]"
+            />
+            <Image
+              src={'facebook.svg'}
+              width={0}
+              height={0}
+              alt="Facebook icon"
+              className="w-full bg-cover bg-center bg-no-repeat bg-fixed max-w-[0.625em]"
+            />
+          </div>
+        </div>
+      </div>
     </>
   );
 }

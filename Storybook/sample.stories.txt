@@ -1,3 +1,4 @@
+// stories/HeroSection.stories.tsx
 import HeroSection from "components/HeroSection";
 import { Meta, StoryObj } from "@storybook/react";
 
@@ -8,7 +9,38 @@ const meta: Meta<typeof HeroSection> = {
     layout: "centered",
   },
   tags: ["autodocs"],
- 
+  argTypes: {
+    title: {
+      control: "text",
+      description: "The main title of the hero section",
+      defaultValue: "Improving Professional Connections for a More Promising Future",
+    },
+    description: {
+      control: "text",
+      description: "Description text for the hero section",
+      defaultValue: "Tapup is the cutting-edge digital business card that transforms the way professionals connect, ensuring that every interaction is both meaningful and effortless.",
+    },
+    buttonTextPrimary: {
+      control: "text",
+      description: "Primary button text",
+      defaultValue: "Open an account now",
+    },
+    buttonTextSecondary: {
+      control: "text",
+      description: "Secondary button text",
+      defaultValue: "Learn More",
+    },
+    videoSrc: {
+      control: "text",
+      description: "Source for the video",
+      defaultValue: "HfMX_InfiP0",
+    },
+    videoAlt: {
+      control: "text",
+      description: "Alternative text for the video",
+      defaultValue: "Nfc",
+    },
+  },
 };
 
 export default meta;
@@ -17,34 +49,24 @@ type Story = StoryObj<typeof HeroSection>;
 
 export const SubsessionForm: Story = {
   args: {
-    labels: {
-      title: "Improving Professional Connections for a More Promising Future",
-      description:
-        "Tapup is the cutting-edge digital business card that transforms the way professionals connect, ensuring that every interaction is both meaningful and effortless.",
-      buttonTextPrimary: "Open an account now",
-      buttonTextSecondary: "Learn More",
-      videoSrc: "hpZ9dGADcVg",
-      videoAlt: "Nfc",
-    },
-
-    handleClickOpenAccount: () => console.log("Open Account Clicked"),
-    handleClickLearnMore: () => console.log("Learn More Clicked"),
-
+    title: "Improving Professional Connections for a More Promising Future",
+    description:
+      "Tapup is the cutting-edge digital business card that transforms the way professionals connect, ensuring that every interaction is both meaningful and effortless.",
+    buttonTextPrimary: "Open an account now",
+    buttonTextSecondary: "Learn More",
+    videoSrc: "HfMX_InfiP0",
+    videoAlt: "Nfc",
   },
 };
 
 
-// Hero Section Component
+// Hero section Component
 
 <HeroSection
-  handleClickLearnMore={() => {}}
-  handleClickOpenAccount={() => {}}
-  labels={{
-    buttonTextPrimary: 'Open an account now',
-    buttonTextSecondary: 'Learn More',
-    description: 'Tapup is the cutting-edge digital business card that transforms the way professionals connect, ensuring that every interaction is both meaningful and effortless.',
-    title: 'Improving Professional Connections for a More Promising Future',
-    videoAlt: 'Nfc',
-    videoSrc: 'hpZ9dGADcVg'
-  }}
+  buttonTextPrimary="Open an account now"
+  buttonTextSecondary="Learn More"
+  description="Tapup is the cutting-edge digital business card that transforms the way professionals connect, ensuring that every interaction is both meaningful and effortless."
+  title="Improving Professional Connections for a More Promising Future"
+  videoAlt="Nfc"
+  videoSrc="HfMX_InfiP0"
 />
