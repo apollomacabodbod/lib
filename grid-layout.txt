@@ -1,0 +1,86 @@
+
+
+import Image from "next/image";
+
+const GridContainer = () => {
+
+  return (
+
+
+
+<>
+
+<div className="grid grid-cols-1 sm:grid-cols-4  gap-[1em] border border-[#50B498]">
+
+<div class=" sm:col-span-2 border border-[#50B498]">
+
+<div className="flex items-center ">
+
+<p className="border border-[#50B498] ">Description for Item 1</p>
+
+</div>
+
+
+
+  <div className="flex items-center justify-center  border border-[#50B498]">
+
+<Image
+src={`/star.svg`}
+width={0}
+height={0}
+alt="start"
+className=" w-full max-w-5 "
+>
+</Image>
+
+<p className=" pt-[0.1em]">Description for Item 1</p>
+
+
+</div>
+
+<p className="">Description for Item 1</p>
+
+
+
+</div>
+
+
+<div className=" p-4 border border-[#50B498]">
+  <h2 className="font-bold">Item 2</h2>
+  <p>Description for Item 2</p>
+</div>
+
+
+
+<div className=" p-4  sm:row-span-2 border border-[#50B498]">
+  <h2 className="font-bold">Item 3</h2>
+  <p>Description for Item 3</p>
+</div>
+
+<div className=" p-4 border border-[#50B498]">
+  <h2 className="font-bold">Item 4</h2>
+  <p>Description for Item 4</p>
+</div>
+
+
+<div className=" p-4 sm:col-span-2 border border-[#50B498]">
+  <h2 className="font-bold">Item 5</h2>
+  <p>Description for Item 5</p>
+</div>
+
+
+
+</div>
+
+
+
+</>
+
+
+   
+
+  );
+};
+
+export default GridContainer;
+
